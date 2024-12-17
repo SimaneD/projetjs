@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="examen.css">
+  <title>To-Do List</title>
+  
+</head>
+<body class="fond">
+  
+  <h1>TO DO List</h1>
+
+    <form id="tacheForm">
+      <label for="tache">Nouvelle tâche :</label>
+      <input type="text" id="tache" placeholder="Entrez une tâche">
+      <button type="button" id="ajouterTache">Ajouter</button>
+    </form>
+      
+
+  <ul id="listeTaches"></ul>
+
+  <button type="button" id="toutSupprimer">Tout supprimer</button>
+  <p>Tâches totales : <span id="totalTaches">0</span></p> <p> Tâches terminées : <span id="tachesTerminees">0</span></p>
+    
+  
+   <script>
+     const tacheInput = document.getElementById("tache");
+     const ajouterTacheBtn = document.getElementById("ajouterTache");
+     const listeTaches = document.getElementById("listeTaches");
+     const toutSupprimerBtn = document.getElementById("toutSupprimer");
+     const totalTaches = document.getElementById("totalTaches");
+     const tachesTerminees = document.getElementById("tachesTerminees");
+
+       let taches = [];
+     
+
+    // Ajouter une tâche
+    ajouterTacheBtn.onclick = () => {
+      const texte = tacheInput.value.trim();
+      if (texte) {
+        taches.push({ texte, terminee: false });
+        tacheInput.value = "";
+        rafraichirListe();
+      }
+    };
+
+    // Gérer les clics sur les tâches (compléter ou supprimer)
+    listeTaches.onclick = (e) => {
+      const index = e.target.dataset.index;
+      if (e.target.tagName === "LI") {
+        taches[index].terminee = !taches[index].terminee;
+      } else if (e.target.tagName === "BUTTON") {
+        taches.splice(index, 1);
+      }
+      rafraichirListe();
+    };
+
+    // Supprimer toutes les tâches
+    toutSupprimerBtn.onclick = () => {
+      taches = [];
+      rafraichirListe();
+    };
+
+    // Mise à jour  de la liste et des compteurs
+    const rafraichirListe = () => {
+      listeTaches.innerHTML = taches
+        .map((tache, index) => `
+          <li data-index="${index}" style="text-decoration: ${tache.terminee ? "line-through" : "none"}">
+            ${tache.texte} 
+            <button data-index="${index}">Supprimer</button>
+          </li>
+        `)
+        .join("");
+      totalTaches.textContent = taches.length;
+      tachesTerminees.textContent = taches.filter(t => t.terminee).length;
+    };
+    
+  </script>
+</body>
+</html>

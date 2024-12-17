@@ -1,0 +1,41 @@
+body {
+    
+    background-color: grey;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #79c2e1;
+    margin-bottom: 20px;
+    background-color: rgb(227, 225, 217);
+    border: #d60a0a; 
+  }
+  
+  input[type="text"] {
+    flex: auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #6222a1;
+    border-radius: 4px;
+    font-style: italic;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 19px;
+    border: none;
+    border-radius: 4px;
+    background-color: #8f9de2;
+    color: white;
+    cursor: pointer;
+  }
+
+  .fond { background-image: url('c:\Users\UNCHK\Pictures\Camera Roll\WhatsApp Image 2024-12-14 à 02.19.37_5d3ab15f.jpg');
+  }
+  
